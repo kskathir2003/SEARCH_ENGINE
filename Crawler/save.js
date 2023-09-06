@@ -9,18 +9,19 @@ function save(domain, progressData, htmlContent, textContent, saveProgress) {
     const subfolderPath = path.join(resultsFolder, subfolderName);
     const domainName = domain;
   
-    if (!fs.existsSync(subfolderPath)) {
-      fs.mkdirSync(subfolderPath);
-    }
-  
     if (domainName) {
       const folderName = path.join(subfolderPath, domainName);
-  
-      if (!fs.existsSync(folderName)) {
-        fs.mkdirSync(folderName);
-      }
-  
+   
       if (htmlContent !== null) {
+
+        if (!fs.existsSync(subfolderPath)) {
+          fs.mkdirSync(subfolderPath);
+        }
+
+        if (!fs.existsSync(folderName)) {
+          fs.mkdirSync(folderName);
+        }
+
         fs.writeFileSync(path.join(folderName, `${domainName}.html`), htmlContent);
         // Increment the count of crawled websites
         progressData.crawledCount++;
