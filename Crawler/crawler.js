@@ -15,6 +15,11 @@ let progressData = {
   websitesInCurrentFolder: 0, // Websites saved in the current folder
 };
 
+const resultsFolder = path.join(process.cwd(), 'crawled_results');
+if (!fs.existsSync(resultsFolder)) {
+  fs.mkdirSync(resultsFolder);
+}
+
 if (fs.existsSync(progressFilePath)) {
   try {
     const progressJson = fs.readFileSync(progressFilePath, 'utf8');
